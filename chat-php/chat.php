@@ -1,29 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<title>Chat Privado</title>
 </head>
 <body>
-    <H2>CHAT </H2>
-    <!--receber as mensagens enviadas pelo js-->
-    <span Id="mensagem_chat"></span>
-    <script>
-        const mensagemChat = document.GetElementById("mensagem_chat");
+<h2>Chat Privado</h2>
 
-       const ws=  new Websocket('ws//localhost:')
+<input type="text" id="mensagem" placeholder="Mensagem">
+<input type="text" id="destinatario" placeholder="ID do usuário destino">
+<button onclick="enviarMensagem()">Enviar</button>
 
-       ws onopen = (e) =>
-       {
-        console.log("conectado");
-       }
-       ws onmessage =(mensagemrecebida) =>
-       {
-       let resultado= JSON.parse(mensagemrecebida.data);
+<div id="mensagens"></div>
 
-       mensagemChat= insertAdjacentHTML('beforeend', '${resultado.mensagem}<br>');//falta coisa
-       }
-    </script>
+<script>
+    const token = "SEU_TOKEN_JWT_AQUI"; // Recebido do login Laravel
+    const mensagensDiv = document.getElementById("mensagens");
+
+    // Conectar ao servidor Ratchet
+    const ws = new WebSocket("ws://localhost:8080");
+
+    ws.onopen = () => {
+        // Envia token JWT para autenticar
+        ws.send(JSON.stringify({ type:"auth", token: token }));
+    };
+
+    ws.onmessage = (msg) => {
+        const data = JSON.parse(msg.data);
+        if(data.system){
+            mensagensDiv.insertAdjacentHTML("beforeend", `<b>SISTEMA:</b> ${data.message}<br>`);
+        } else {
+            mensagensDiv.insertAdjacentHTML("beforeend", `<b>${data.from}:</b> ${data.message}<br>`);
+        }
+    };
+
+    function enviarMensagem(){
+        const mensagem = document.getElementById("mensagem").value;
+        const to = document.getElementById("destinatario").value;
+
+        ws.send(JSON.stringify({ type:"message", to:to, message:mensagem }));
+        document.getElementById("mensagem").value = "";
+    }
+</script>
 </body>
 </html>
