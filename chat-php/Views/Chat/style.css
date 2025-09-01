@@ -1,0 +1,106 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+body
+{
+    background: #8a8888;
+}
+.container
+{
+    background-color: red;
+    height:  100dvh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chat
+{
+    background-color: #555;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.chat_messages
+{
+    flex-grow: 1;
+    padding: 30px 30px 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.chat_conversa
+{
+    background-color: rgb(49, 47, 47);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+.chat_input
+{
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    flex-grow: 1;
+    background-color: #555;
+    outline: none;
+    color: rgb(247, 247, 247);
+    font-size: 1rem;
+}
+.chat_button
+{
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #f2f2f2;
+}
+.chat_button > span
+{
+font-size: 1.8rem;
+}
+.chat_messages >div
+{
+    
+    padding: 10px;
+    width: 100%;
+    max-width:250px;
+    font-size: 0.9rem;
+    font-weight: 500px;
+    margin-bottom: 15px;
+    line-height: 22px;
+}
+.mensagem-self
+{
+   
+    background-color: #ddd;
+    color: #121212;
+    border-radius: 10px 10px 10px 10px;
+    align-self: flex-end;
+}
+.mensagem-outra
+{
+
+    background-color: #2ba5dd;
+    color: #f2f2f2;
+    border-radius: 0px 10px 10px 10px;
+    align-self: flex-start;
+
+}
+.mensagem--sender
+{
+    display: block;
+    margin-botton:;
+}
