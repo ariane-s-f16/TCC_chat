@@ -7,11 +7,17 @@
 <body>
 <h2>Chat Privado</h2>
 
+
+
+
 <input type="text" id="mensagem" placeholder="Mensagem">
 <input type="text" id="destinatario" placeholder="ID do usuário destino">
 <button onclick="enviarMensagem()">Enviar</button>
 
 <div id="mensagens"></div>
+
+
+
 
 <script>
     const token = "SEU_TOKEN_JWT_AQUI"; // Recebido do login Laravel
